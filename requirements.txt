@@ -10,7 +10,7 @@ requests==2.32.5
 # LLM scoring
 openai==1.109.1
 google-generativeai==0.8.6
-# Additional models used only in exploratory scripts
+# Additional models compared in nm_exp5_llm_vs_ml_benchmark.py
 lightgbm==4.6.0
 catboost==1.2.10
 tabpfn==6.4.1

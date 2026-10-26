@@ -20,10 +20,8 @@ pseudocode/         # key pseudocode of the ChronoABOR framework
 `code/analysis/` contains:
 
 - `rev_exp_common.py`: loading of the ABOR evidence tables, temporal feature construction and shared evaluation utilities
-- `rev_exp_annotations.py`: static annotations (UniProt, KEGG, DisGeNET)
 - `rev_exp_e*.py`: analyses of the revised manuscript
-- `nm_exp*.py`, `experiment_01_baselines.py`: analyses of the initial submission, including the gene-blind LLM scoring; several revision analyses reuse their outputs
-- `rev_exp_fetch_years*.py`, `pub_year_external.py`: resolution of publication years for ABOR source studies
+- `nm_exp*.py`: analyses of the initial submission, including the gene-blind LLM scoring; several revision analyses reuse their outputs
 
 Each script writes its output to `code/analysis/results/<script name>.json`.
 
@@ -41,8 +39,8 @@ Each script writes its output to `code/analysis/results/<script name>.json`.
 | Permutation null on Fold C | `code/analysis/rev_exp_e14_strict_permutation.py` |
 | Robustness and rolling-origin within-secreted evaluation (Supplementary Fig. 1) | `code/analysis/nm_exp_p9_rolling_origin.py`, `code/analysis/rev_exp_e8_spec_model.py` |
 | Ranked and covariate-matched proteomic enrichment (Supplementary Fig. 2) | `code/analysis/nm_exp_p7_ranked_enrichment.py`, `code/analysis/nm_exp_p7b_matched_enrichment.py` |
-| Second proteomic cohort and non-canonical enrichment | `code/analysis/nm_exp_p10_second_validation.py`, `nm_exp_p11_noncanonical_enrichment.py`, `nm_exp_p12_noncanonical_matched_null.py`, `nm_exp_p13_noncanon_thresholds.py` |
-| Corpus-size subsampling, validation tiers, study list, analyte translation | `code/analysis/rev_exp_e2_corpus_saturation.py`, `rev_exp_e4_validation_strata.py`, `rev_exp_e5_study_list.py`, `rev_exp_e6_analyte_translation.py` |
+| Second proteomic cohort and non-canonical enrichment | `code/analysis/nm_exp_p10_second_validation.py`, `nm_exp_p12_noncanonical_matched_null.py`, `nm_exp_p13_noncanon_thresholds.py` |
+| Corpus-size subsampling and validation tiers | `code/analysis/rev_exp_e2_corpus_saturation.py`, `rev_exp_e4_validation_strata.py` |
 
 ## Requirements
 
