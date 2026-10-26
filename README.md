@@ -52,19 +52,6 @@ Python 3.11. The package versions of the environment used for the reported analy
 pip install -r requirements.txt
 ```
 
-## Input data
-
-The source data of the analyses are available from ABOR at [http://gepa.org.cn/ABOR/](http://gepa.org.cn/ABOR/).
-
-- **ABOR evidence tables.** Download the seven layer tables (`degs.csv`, `snp.csv`, `cpg.csv`, `hubgene.csv`, `miRNA.csv`, `signature.csv`, `target.csv`) from ABOR and place them in `code/analysis/`. ABOR is updated continuously.
-- **External evaluation corpus.** The gene list with provenance publications and fold assignments is given in Supplementary Table 3 of the article. The scripts read it as a LaTeX table from `code/analysis/paper/supplementary_table_s1.tex`.
-- **Annotations and comparison datasets** in `code/analysis/external_data/`, obtained from the original sources under their own terms of use:
-  - `annotations/`: reviewed human UniProt entries (release 2019-11), KEGG pathway hsa05010 gene links and DisGeNET v7.0 status (`uniprot_reviewed_human_raw.tsv`, `uniprot_secreted_human.tsv`, `uniprot_reviewed_human_manifest.json`, `kegg_hsa05010_link.tsv`, `kegg_hsa05010_genes.tsv`, `kegg_hsa_list.tsv`, `disgenet_status.json`)
-  - `Frick2024_SupplementaryTables.xlsx`: supplementary tables of Frick *et al.*, *Nat. Aging* **4**, 1446–1464 (2024), including the SomaScan 7k analyte list
-  - `olink_explore3072_assay_list.csv`: Olink Explore 3072 assay list
-  - Indiana ADRC and Knight ADRC plasma proteomics hit lists: Huang *et al.*, *Alzheimers Dement.* **21**, e70579 (2025) and Heo *et al.*, *Nat. Aging* **5**, 1114–1131 (2025); the hit lists used are written in `nm_exp_p5_external_validation.py`
-- **LLM access.** Scoring with LLMs requires API access. Set `OPENAI_API_KEY` (optionally `OPENAI_BASE_URL`) for the GPT models and `GEMINI_API_KEY` for the Gemini models.
-
 ## Running
 
 Run the analysis scripts from `code/analysis/`, for example:
