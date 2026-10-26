@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+code/analysis/results/
+code/analysis/external_data/
+code/analysis/paper/
+code/analysis/*.csv
+code/figures/output/
+code/figures/strict_fold_c_topk_bootstrap.json

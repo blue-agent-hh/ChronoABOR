@@ -1,0 +1,16 @@
+# Package versions of the environment used for the reported analyses (Python 3.11)
+numpy==2.3.3
+pandas==2.3.2
+scipy==1.16.2
+scikit-learn==1.7.2
+xgboost==3.2.0
+matplotlib==3.10.7
+openpyxl==3.1.5
+requests==2.32.5
+# LLM scoring
+openai==1.109.1
+google-generativeai==0.8.6
+# Additional models used only in exploratory scripts
+lightgbm==4.6.0
+catboost==1.2.10
+tabpfn==6.4.1
