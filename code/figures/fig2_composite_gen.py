@@ -27,7 +27,7 @@ def _repeat_aurocs(fold, model):
 
 
 REPEATS = {
-    "Logistic Reg.": (_repeat_aurocs("strict_fold_c", "logistic"), _repeat_aurocs("strict_fold_d", "logistic")),
+    "LR": (_repeat_aurocs("strict_fold_c", "logistic"), _repeat_aurocs("strict_fold_d", "logistic")),
     "XGBoost": (_repeat_aurocs("strict_fold_c", "xgb"), _repeat_aurocs("strict_fold_d", "xgb")),
 }
 
@@ -38,7 +38,7 @@ def _label(ax, letter, x=-0.12, y=1.06):
 
 def _draw_auroc(ax):
     ROWS = [
-        ("Logistic Reg.",    0.930, 0.004, 0.778, 0.022, "ml"),
+        ("LR",    0.930, 0.004, 0.778, 0.022, "ml"),
         ("XGBoost",          0.882, 0.029, 0.732, 0.024, "ml"),
         ("GPT-5.4",          0.825, 0.000, 0.701, 0.000, "llm"),
         ("GPT-5.2",          0.811, 0.000, 0.693, 0.000, "llm"),

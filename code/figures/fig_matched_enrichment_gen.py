@@ -77,8 +77,8 @@ def draw_summary_panel(ax: plt.Axes, matched: dict, random: dict) -> None:
     chrono = random["methods"]["chronoabor"]
     sig = random["methods"]["sig_max_auc"]
     summary_rows = [
-        ("ChronoABOR\nrandom null", chrono["nes"], chrono["p_value"], BLUE),
-        ("sig_max_auc\nrandom null", sig["nes"], sig["p_value"], MID_GRAY),
+        ("ChronoABOR\n(XGBoost)", chrono["nes"], chrono["p_value"], BLUE),
+        ("Max signature\nAUC", sig["nes"], sig["p_value"], MID_GRAY),
     ]
 
     y = np.arange(len(summary_rows))
@@ -99,7 +99,7 @@ def draw_summary_panel(ax: plt.Axes, matched: dict, random: dict) -> None:
         ax.text(
             nes + 0.018,
             bar.get_y() + bar.get_height() / 2,
-            f"NES={nes:.3f}\np={p_value:.3f}",
+            f"NES={nes:.3f}\n$P$={p_value:.3f}",
             ha="left",
             va="center",
             fontsize=9.2,
@@ -110,7 +110,7 @@ def draw_summary_panel(ax: plt.Axes, matched: dict, random: dict) -> None:
     ax.set_xlim(0.8, 1.9)
     ax.set_xticks(np.arange(0.8, 1.81, 0.2))
     ax.set_ylim(-0.55, 1.8)
-    ax.set_xlabel("Normalized enrichment score")
+    ax.set_xlabel("Normalised enrichment score")
     ax.set_yticks(y)
     ax.set_yticklabels([row[0] for row in summary_rows])
     ax.invert_yaxis()
@@ -212,7 +212,7 @@ def build_figure(matched: dict, random: dict) -> plt.Figure:
     add_panel_label(ax_a, "a")
     add_panel_label(ax_b, "b", x=-0.04, y=1.025)
 
-    ax_b.legend(handles=legend_handles, loc="upper center", bbox_to_anchor=(0.2, -0.15),
+    ax_b.legend(handles=legend_handles, loc="upper center", bbox_to_anchor=(0.173, 0.013),
                 ncol=1, frameon=False, fontsize=9.5, handlelength=1.0, handleheight=0.9)
     fig.subplots_adjust(left=0.13, right=0.97, top=0.95, bottom=0.26, wspace=0.55)
 

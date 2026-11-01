@@ -88,7 +88,7 @@ def _draw_secreted(ax):
         {"label": "Publication\ncount",  "auroc": 0.989, "lo": 0.989, "hi": 0.989, "kind": "direct"},
         {"label": "GPT-5.4",             "auroc": 0.982, "lo": 0.982, "hi": 0.982, "kind": "direct"},
         {"label": "ChronoABOR\n(XGBoost)",  "auroc": 0.983, "sd": 0.002, "kind": "model"},
-        {"label": "ChronoABOR\n(logistic)", "auroc": 0.985, "sd": 0.005, "kind": "full"},
+        {"label": "ChronoABOR\n(LR)", "auroc": 0.985, "sd": 0.005, "kind": "full"},
     ]
 
     labels = [r["label"] for r in rows]
@@ -110,7 +110,7 @@ def _draw_secreted(ax):
     ax.axhline(chrono_auc, color=CHRONOABOR_COLOR, linestyle=":", linewidth=0.9, alpha=0.6, zorder=2)
     ax.set_ylabel("Within-secreted AUROC", fontsize=9)
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, rotation=35, ha="right", fontsize=7)
+    ax.set_xticklabels([s.replace("\n", " ") for s in labels], rotation=35, ha="right", rotation_mode="anchor", fontsize=7)
     ax.set_ylim(0, 1.12)
     polish_axes(ax, grid_axis="y")
 
@@ -122,7 +122,7 @@ def _draw_secreted(ax):
 LLM_COLORS = {
     "GPT-5.2": "#D55E00", "GPT-5.4": "#56B4E9",
     "Gemini-2.5-Flash": "#009E73", "Gemini-2.5-Pro": "#CC79A7",
-    "ChronoABOR\n(logistic)": "#E69F00", "ChronoABOR\n(XGBoost)": "#B8860B",
+    "ChronoABOR\n(LR)": "#E69F00", "ChronoABOR\n(XGBoost)": "#B8860B",
 }
 
 LLM_ROWS = [
@@ -130,7 +130,7 @@ LLM_ROWS = [
     {"display_name": "GPT-5.4",          "auroc": 0.982, "auprc": 0.499, "p_at_10": 0.3, "model_family": "llm"},
     {"display_name": "Gemini-2.5-Flash", "auroc": 0.960, "auprc": 0.253, "p_at_10": 0.2, "model_family": "llm"},
     {"display_name": "Gemini-2.5-Pro",   "auroc": 0.966, "auprc": 0.276, "p_at_10": 0.2, "model_family": "llm"},
-    {"display_name": "ChronoABOR\n(logistic)", "auroc": 0.985, "auroc_sd": 0.005, "auprc": 0.463, "p_at_10": 0.4, "model_family": "chronoabor"},
+    {"display_name": "ChronoABOR\n(LR)", "auroc": 0.985, "auroc_sd": 0.005, "auprc": 0.463, "p_at_10": 0.4, "model_family": "chronoabor"},
     {"display_name": "ChronoABOR\n(XGBoost)",  "auroc": 0.983, "auroc_sd": 0.002, "auprc": 0.510, "p_at_10": 0.1, "show_p10": False, "model_family": "chronoabor"},
 ]
 
@@ -156,7 +156,7 @@ def _draw_llm_panel(ax, rows, metric, ylabel):
 
     ax.set_ylabel(ylabel, fontsize=9)
     ax.set_xticks(x)
-    ax.set_xticklabels(labels, rotation=30, ha="right", fontsize=7)
+    ax.set_xticklabels([s.replace("\n", " ") for s in labels], rotation=35, ha="right", rotation_mode="anchor", fontsize=7)
     polish_axes(ax, grid_axis="y")
 
     for bar, val, row in zip(bars, values, rows):

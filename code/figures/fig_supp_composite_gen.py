@@ -44,7 +44,7 @@ def _draw_trajectories(ax):
     nc = np.array([1, 2, 3, 4, 6, 8, 8.5, 9, 10], dtype=float)
 
     ax.plot(years, tp, color=BLUE, linewidth=1.8, linestyle="-", label="True positive (e.g. GFAP)", zorder=3)
-    ax.plot(years, fp, color=RED_, linewidth=1.8, linestyle="--", label="Literature-inflated FP", zorder=3)
+    ax.plot(years, fp, color=RED_, linewidth=1.8, linestyle="--", label="Literature-inflated false positive", zorder=3)
     ax.plot(years, nc, color=GREEN, linewidth=1.8, linestyle="-", label="Non-canonical (YWHAZ)", zorder=3)
 
     ax.axvline(2021, color=CUTOFF_COLOR, linewidth=1.2, linestyle="--", zorder=4)
