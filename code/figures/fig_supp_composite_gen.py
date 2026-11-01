@@ -68,6 +68,14 @@ CUTOFF_COLORS = {2019: "#0072B2", 2020: "#56B4E9", 2021: "#91CFF0"}
 FULL_UNIPROT = {2019: (0.981, 0.036), 2020: (0.977, 0.035), 2021: (0.977, 0.035)}
 
 
+def _fold_aurocs(lookup, year, meth):
+    """Per-fold AUROCs (five stratified CV folds) behind each bar: rev_exp_e8 for ChronoABOR, nm_exp_p9 for the baselines."""
+    if meth == "full_model":
+        cut = next(c for c in json.loads(E8_JSON.read_text())["primary_secreted_definition"]["within_secreted"]["rolling_origin"]["cutoffs"] if c["cutoff_year"] == year)
+        return cut["xgb_results_by_learning_rate"]["lr_0.05"]["full_model"]["fold_aurocs"]
+    return lookup[year][meth]["cv_fold_aurocs"]
+
+
 def _draw_rolling(ax):
     lookup = {}
     if ROLLING_JSON.exists():
@@ -109,8 +117,10 @@ def _draw_rolling(ax):
         bar_x = x + offsets[fi]
         for bi in range(n_methods):
             ax.bar(bar_x[bi], aucs[bi], width=width, yerr=[[lo_err[bi]], [hi_err[bi]]], capsize=2, color=color, edgecolor="white", linewidth=0.5, error_kw={"elinewidth": 0.7, "capthick": 0.7, "ecolor": "#444"}, label=label if bi == 0 else "_nolegend_", zorder=3)
-        for bi in range(n_methods):
-            label_y = min(aucs[bi] + hi_err[bi] + 0.02, 1.16)
+        for bi, meth in enumerate(METHOD_ORDER):
+            folds = _fold_aurocs(lookup, year, meth)
+            ax.scatter(bar_x[bi] + np.linspace(-width * 0.28, width * 0.28, len(folds)), folds, s=16, facecolor="white", edgecolor="#222", linewidth=0.7, zorder=5)
+            label_y = min(max(aucs[bi] + hi_err[bi], max(folds)) + 0.02, 1.16)
             ax.text(bar_x[bi] - 0.04, label_y, f"{aucs[bi]:.3f}", ha="left", va="bottom", fontsize=7, color="#333", rotation=85)
 
     ax.axhline(0.5, color="#6c757d", linestyle="--", linewidth=0.8, zorder=2)
